@@ -1,0 +1,44 @@
+ .div-form{
+            margin-top: 30px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+
+        }
+        .myform{
+            border: 2px solid #f8d7da;
+            padding: 30px;
+            background-color: #fff3cd;
+            box-shadow: #fff3cd;
+        }
+        .contact_div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 100px;
+        }
+        .contacts{
+            display: grid;
+            width: 450px;
+            border: 2px solid #2b542c;
+            padding: 30px;
+        }
+        .btn{
+            margin-top: 10px;
+        }
+        @media screen and (max-width: 1000px){
+            .div-form{
+                width: 100%;
+                background-color: #fff3cd;
+            }
+            .myform{
+                border: none;
+                display: grid;
+            }
+            .btn{
+                margin-top: 5px;
+            }
+            input{
+                width: 350px;
+            }
+        }
