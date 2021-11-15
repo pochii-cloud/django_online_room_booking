@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Room Details</title>
+</head>
+<body>
+{% block content %}
+    {% for messages in messages %}
+        {{ messages }}
+    {% endfor %}
+{{ rooms.name }}
+    {{ rooms.capacity }}
+    <a href="{% url 'BookRoom' rooms.pk %}">book room</a>
+    <a href="{% url 'UnBookRoom' rooms.pk %}">unbook room</a>
+{% endblock %}
+</body>
+</html>

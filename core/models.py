@@ -4,11 +4,10 @@ from django.db import models
 
 # Create your models here.
 class Rooms(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=100)
     booked = models.BooleanField(default=False)
     capacity = models.PositiveIntegerField()
-    image = models.ImageField(blank=True, null=True)
+    image = models.ImageField(upload_to='static/images/rooms', blank=True)
     description = models.CharField(max_length=500)
 
     def __str__(self):
@@ -19,7 +18,7 @@ class Rooms(models.Model):
 
 
 class Contacts(models.Model):
-    username = models.CharField(max_length=50,blank=True,null=True)
+    username = models.CharField(max_length=50, blank=True, null=True)
     email = models.EmailField()
     message = models.CharField(max_length=500)
 

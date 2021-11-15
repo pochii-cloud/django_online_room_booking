@@ -10,6 +10,7 @@ a{
     margin: 50px auto auto;
     overflow: auto;
     padding: 0 2rem;
+    max-height: 100%;
 }
 img{
     width: 100%;

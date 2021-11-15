@@ -13,10 +13,30 @@
 <body>
 <!-- As a link -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <style>
+        @media screen and (max-width: 1000px) {
+            .navbar{
+                margin-top: 10px;
+                height: auto;
+            }
+            .navbar-brand{
+                font-size: 35px;
+            }
+            .navbar-toggler{
+               font-size: 35px;
+
+
+            }
+            .navbar-toggler-icon{
+                color: #FFFFFF;
+                outline: #FFFFFF;
+            }
+        }
+    </style>
   <div class="container-fluid">
           <a class="navbar-brand" href="{% url 'base' %}"><strong>SHERRIFF</strong><i> Lodging & Restaurant</i></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon text-white"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -33,7 +53,7 @@
           <a class="nav-link active" aria-current="page" href=""><strong>Blog</strong></a>
         </li>
            <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href=""><strong>About Us</strong></a>
+          <a class="nav-link active" aria-current="page" href="{% url 'About_page' %}"><strong>About Us</strong></a>
         </li>
             <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'ContactView' %}"><strong>Contact Us</strong></a>
@@ -44,8 +64,8 @@
 </nav>
 
 {% block content %}
-<div class="card bg-dark text-white">
-  <img src="{% static 'images/img1.jpg' %}" class="card-img2" alt="..." height="450px">
+<div class="card bg-dark text-white mt-2">
+  <img src="{% static 'images/img1.jpg' %}" class="card-img2" alt="..." height="550px">
   <div class="card-img-overlay">
     <h3 class="card-title text-center">SHERRIFF LODGING & HOTEL</h3><br>
     <p class="card-text text-center">Hospitality is simply an effort to show love and care</p>
@@ -80,7 +100,7 @@
              hashshdshjdsjksdjkfdhuidfhfnduihfunireheuier.
              hjwehbuirjhfdiuihjfiodjvfigokjgfiol
              hjfdndfkjbdfnuikfbduiverkbueribue ikrhnuie</h3>
-             <a class="btn2" href="">Read More</a>
+             <a class="btn2" href="{% url 'About_page' %}">Read More</a>
              <div class="social">
          <a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
          <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
@@ -96,82 +116,64 @@
   </div>
     <div class="container">
     <h2 class="text-center">Room Categories</h2>
+    <style>
+
+        .card-group{
+                width: 100%;
+                background-image: url("{% static 'images/img2.jpg' %}");
+                background-repeat: no-repeat;
+                padding: 10px;
+            }
+        @media screen and (max-width: 1000px){
+            .card-group{
+                display: grid;
+                width: 100%;
+                padding: 20px;
+                background-image: url("{% static 'images/img2.jpg' %}");
+                background-repeat: no-repeat;
+            }
+        }
+    </style>
     <div class="card-group">
   <div class="card" style="margin: 15px">
     <img src="{% static 'images/img8.jpg' %}" class="card-img-top" style="height: 200px;" alt="...">
     <div class="card-body">
       <h5 class="card-title">SINGLE ROOMS</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <p class="card-text">This is a wider card with supporting text.</p>
+        <a href="{% url 'EconomicRooms' %}" class="btn2">Explore</a>
     </div>
   </div>
   <div class="card" style="margin: 15px">
     <img src="{% static 'images/img7.jpg' %}" class="card-img-top"  style="height: 200px;" alt="...">
     <div class="card-body">
       <h5 class="card-title">DOUBLE ROOMS</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+      <p class="card-text">This card has supporting text below as</p>
+        <a href="{% url 'SecondRooms' %}" class="btn2">Explore</a>
     </div>
   </div>
   <div class="card" style="margin: 15px">
     <img src="{% static 'images/img6.jpg' %}" class="card-img-top" style="height: 200px;"  alt="...">
     <div class="card-body">
       <h5 class="card-title">3+ PERSONNEL</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+      <p class="card-text">This is a wider card witho show that equal height action.</p>
+        <a href="{% url 'FirstRooms' %}" class="btn2">Explore</a>
     </div>
   </div>
 </div>
-    </div>
+        </div>
     <div class="container">
-    <h2 class="text-center font-monospace">RATED ROOMS</h2>
+    <h2 class="text-center font-monospace"> TOP RATED ROOMS</h2>
+        {% for rooms in rooms %}
     <div class="card2">
-        <img src="{% static 'images/img1.jpg' %}">
+        <img src="{{ rooms.image.url }}" alt="not found">
         <div>
-            <h3>room1</h3>
-            <p>sdftgyuixcvfbhgjksfdrtyuiocvbfhgjklokiutfdghjklkjhg
-            kjhgfgbnm,mnbvcvbnm,sdfgggggggggggggggggggggggg
-            gggggggggggggggggggggggggggggggggggggggggggggg</p>
-            <a href="" class="btn2">book now</a>
+            <h3>{{ rooms.name }}</h3>
+            <p>{{ rooms.description }}</p>
+             <p>{{ rooms.booked }}</p>
+            <a href="{% url 'RoomsDetail' rooms.pk %}" class="btn2">book now</a>
         </div>
     </div>
-     <div class="card2">
-        <img src="{% static 'images/img2.jpg' %}">
-        <div>
-            <h3>room1</h3>
-            <p>sdftgyuixcvfbhgjksfdrtyuiocvbfhgjklokiutfdghjklkjhg
-            kjhgfgbnm,mnbvcvbnm,sdfgggggggggggggggggggggggg
-            gggggggggggggggggggggggggggggggggggggggggggggg</p>
-            <a href="" class="btn2">book now</a>
-        </div>
-    </div>
-     <div class="card2">
-        <img src="{% static 'images/img3.jpg' %}">
-        <div>
-            <h3>room1</h3>
-            <p>sdftgyuixcvfbhgjksfdrtyuiocvbfhgjklokiutfdghjklkjhg
-            kjhgfgbnm,mnbvcvbnm,sdfgggggggggggggggggggggggg
-            gggggggggggggggggggggggggggggggggggggggggggggg</p>
-            <a href="" class="btn2">book now</a>
-        </div>
-    </div>
-     <div class="card2">
-        <img src="{% static 'images/img4.jpg' %}">
-        <div>
-            <h3>room1</h3>
-            <p>sdftgyuixcvfbhgjksfdrtyuiocvbfhgjklokiutfdghjklkjhg
-            kjhgfgbnm,mnbvcvbnm,sdfgggggggggggggggggggggggg
-            gggggggggggggggggggggggggggggggggggggggggggggg</p>
-            <a href="" class="btn2">book now</a>
-        </div>
-    </div>
-     <div class="card2">
-        <img src="{% static 'images/img4.jpg' %}">
-        <div>
-            <h3>room1</h3>
-            <p>sdftgyuixcvfbhgjksfdrtyuiocvbfhgjklokiutfdghjklkjhg
-            kjhgfgbnm,mnbvcvbnm,sdfgggggggggggggggggggggggg
-            gggggggggggggggggggggggggggggggggggggggggggggg</p>
-            <a href="" class="btn2">book now</a>
-        </div>
-    </div>
+    {% endfor %}
     </div>
   <div class="container">
   <h1 class="text-center font-monospace">services</h1>
@@ -212,6 +214,7 @@
    </div>
   </div>
 {% endblock %}
+{% include 'footer.html' %}
 <script src="{% static 'js/bootstrap.min.js' %}"> </script>
 </body>
 </html>
