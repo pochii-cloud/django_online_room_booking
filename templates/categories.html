@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Categories</title>
+</head>
+<body>
+{% block content %}
+   <style>
+    .card-group{
+        margin-top: 30px;
+    }
+    </style>
+     <h3 class="text-center m-4">Top Rated Rooms</h3>
+   <div class="card-group">
+        {% for rooms in rooms %}
+            {% if rooms.category.name == 'top_rated' %}
+        <div class="col-12 col-sm-6  col-lg-6 col-xl-3 p-2">
+          <div class="card">
+            <img src="{{rooms.image.url}}" class="card-img-top" alt="..." height="200px" style="object-fit: cover;padding: 5px;">
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center">{{rooms.name}}</h5>
+                <p class="card-text">{{ rooms.description }}</p>
+                <a  href="{% url 'RoomsDetail' rooms.pk %}" class="btn2">Book now</a>
+            </div>
+          </div>
+        </div>
+            {% endif %}
+        {% endfor %}
+</div>
+
+        <h3 class="text-center m-4">One Personel Rooms</h3>
+   <div class="card-group">
+        {% for rooms in rooms %}
+            {% if rooms.category.name == 'one_personel' %}
+        <div class="col-12 col-sm-6  col-lg-6 col-xl-3 p-2">
+          <div class="card">
+            <img src="{{rooms.image.url}}" class="card-img-top" alt="..." height="200px" style="object-fit: cover;padding: 5px;">
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center">{{rooms.name}}</h5>
+                <p class="card-text">{{ rooms.description }}</p>
+                <a  href="{% url 'RoomsDetail' rooms.pk %}" class="btn2">Book now</a>
+            </div>
+          </div>
+        </div>
+            {% endif %}
+        {% endfor %}
+</div>
+
+        <h3 class="text-center m-4">Two Personel Rooms</h3>
+   <div class="card-group">
+        {% for rooms in rooms %}
+            {% if rooms.category.name == 'two_personel' %}
+        <div class="col-12 col-sm-6  col-lg-6 col-xl-3 p-2">
+          <div class="card">
+            <img src="{{rooms.image.url}}" class="card-img-top" alt="..." height="200px" style="object-fit: cover;padding: 5px;">
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center">{{rooms.name}}</h5>
+                <p class="card-text">{{ rooms.description }}</p>
+                <a  href="{% url 'RoomsDetail' rooms.pk %}" class="btn2">Book now</a>
+            </div>
+          </div>
+        </div>
+            {% endif %}
+        {% endfor %}
+</div>
+
+        <h3 class="text-center m-4">more personel Rooms</h3>
+   <div class="card-group">
+        {% for rooms in rooms %}
+            {% if rooms.category.name == 'more_personel' %}
+        <div class="col-12 col-sm-6  col-lg-6 col-xl-3 p-2">
+          <div class="card">
+            <img src="{{rooms.image.url}}" class="card-img-top" alt="..." height="200px" style="object-fit: cover;padding: 5px;">
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center">{{rooms.name}}</h5>
+                <p class="card-text">{{ rooms.description }}</p>
+                <a  href="{% url 'RoomsDetail' rooms.pk %}" class="btn2">Book now</a>
+            </div>
+          </div>
+        </div>
+            {% endif %}
+        {% endfor %}
+</div>
+{% endblock %}
+</body>
+</html>

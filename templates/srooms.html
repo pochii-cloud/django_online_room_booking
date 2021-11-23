@@ -8,7 +8,27 @@
 </head>
 <body>
 {% block content %}
-<p>this is the second class rooms</p>
+   <style>
+    .card-group{
+        margin-top: 30px;
+    }
+    </style>
+   <div class="card-group">
+        {% for rooms in rooms %}
+            {% if rooms.category.name == "two_personel" %}
+        <div class="col-12 col-sm-6  col-lg-6 col-xl-3 p-2">
+          <div class="card">
+            <img src="{{rooms.image.url}}" class="card-img-top" alt="..." height="200px" style="object-fit: cover;padding: 5px;">
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center">{{rooms.name}}</h5>
+                <p class="card-text">{{ rooms.description }}</p>
+                <a  href="{% url 'RoomsDetail' rooms.pk %}" class="btn2">Book now</a>
+            </div>
+          </div>
+        </div>
+            {% endif %}
+        {% endfor %}
+</div>
 {% endblock %}
 </body>
 </html>

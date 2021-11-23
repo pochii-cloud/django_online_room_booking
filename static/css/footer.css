@@ -65,10 +65,8 @@ ul{
 .footer-col .social-links a{
     display: inline-block;
     height: 40px;
-    background-color: rgba(255,255,255,0.2);
     margin: 0 10px 10px 0;
     line-height: 40px;
-    border-radius: 50%;
     color: #FFFFFF;
     transition: all 0.3s ease;
 }

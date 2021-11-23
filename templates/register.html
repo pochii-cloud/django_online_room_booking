@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create account</title>
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+</head>
+<body>
+{% block content %}
+    <style>
+    .RegisterForm{
+    margin-top: 50px;
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.register{
+    display: grid;
+    width: auto;
+    background-color: #f2dede;
+    padding: 25px;
+
+}
+p{
+    font-size: 15px;
+    margin-top: 5px;
+}
+.btn{
+    margin-top: 5px;
+}
+@media screen and (max-width: 1000px) {
+    .RegisterForm{
+        min-height: 50vh;
+        width: 100%;
+    }
+
+}
+    </style>
+<div class="RegisterForm">
+<form class="register" method="post">
+<h3 class="text-center">register here</h3>
+    {% csrf_token %}
+      {% for fields in form %}
+          <label>{{ fields.label_tag }}</label>
+          {{ fields }}
+       {% endfor %}
+ <button class="btn btn-success" type="submit">register</button>
+<p class="font-monospace">already have an account?<a class="link-primary" href="{% url 'SignInView' %}">login here</a></p>
+<div class="text-danger">{{ form.errors }}</div>
+</form>
+</div>
+{% endblock %}
+</body>
+</html>

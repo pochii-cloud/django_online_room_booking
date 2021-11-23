@@ -1,0 +1,12 @@
+.RegisterForm{
+    background-color: green;
+    height: 500px;
+    width: 200px;
+    display: flex;
+    outline: #f5c2c7;
+    box-shadow: #f5c2c7;
+}
+.register{
+    display: grid;
+
+}

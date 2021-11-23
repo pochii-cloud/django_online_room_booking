@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>myrooms</title>
+</head>
+<body>
+{% block content %}
+         <style>
+    .card-group{
+        margin-top: 30px;
+    }
+    </style>
+     <div class="bg-danger text-white text-center">
+        {% for messages in messages %}
+        {{ messages }}
+    {% endfor %}
+    </div>
+   <div class="card-group">
+       {% for rooms in rooms %}
+           {% if rooms.booked %}
+        <div class="col-12 col-sm-6  col-lg-6 col-xl-3 p-2">
+          <div class="card">
+            <img src="{{rooms.image.url}}" class="card-img-top" alt="..." height="200px" style="object-fit: cover;padding: 5px;">
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center">{{rooms.name}}</h5>
+                <p class="card-text">{{ rooms.description }}</p>
+                <a  href="{% url 'UnBookRoom' rooms.pk %}" class="btn btn-danger">UnBook</a>
+            </div>
+          </div>
+        </div>
+           {% endif %}
+        {% endfor %}
+</div>
+{% endblock %}
+</body>
+</html>

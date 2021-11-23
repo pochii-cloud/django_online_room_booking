@@ -5,16 +5,63 @@
 <head>
     <meta charset="UTF-8">
     <title>Room Details</title>
+    <link rel="stylesheet" href="{% static 'css/details.css' %}">
 </head>
 <body>
 {% block content %}
-    {% for messages in messages %}
+    <style>
+    .details{
+        margin-top: 80px;
+        margin-left: 220px;
+
+    }
+    .bg-danger{
+        width: 600px;
+    }
+    @media screen and (max-width: 1000px){
+      .details{
+          min-height: 50vh;
+          margin-left: 180px;
+          height: 500px;
+      }
+        .card{
+            height: 100%;
+        }
+    }
+    </style>
+    <div class="container">
+    <div class="details">
+        <div class="bg-danger text-white">
+        {% for messages in messages %}
         {{ messages }}
     {% endfor %}
-{{ rooms.name }}
-    {{ rooms.capacity }}
-    <a href="{% url 'BookRoom' rooms.pk %}">book room</a>
-    <a href="{% url 'UnBookRoom' rooms.pk %}">unbook room</a>
+    </div>
+    <div class="card mb-3"  id="detailscard" style="max-width: 600px; height: 250px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{ rooms.image.url }}" class="detail_image" alt="..." height="250px">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ rooms.name }}</h5>
+          {% if rooms.booked %}
+              <p class="card-title text-danger"><b>room booked</b></p>
+          {% else %}
+              <p class="card-title text-success"><b>room not booked</b></p>
+          {% endif %}
+          <p>
+              {% if rooms.booked is False %}
+              <a class="btn btn-success" href="{% url 'BookRoom' rooms.pk %}">book room</a>
+              {% else %}
+              <a class="btn btn-danger" href="{% url 'UnBookRoom' rooms.pk %}">unbook room</a>
+              {% endif %}
+          </p>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+    </div>
 {% endblock %}
 </body>
 </html>
